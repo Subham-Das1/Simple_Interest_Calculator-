@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        .floating {
+            position: absolute;
+            color: white;
+            font-size: 2rem;
+            animation: floatAnimation linear infinite;
+        }
+
+        @keyframes floatAnimation {
+            from {
+                transform: translateY(100vh) translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh) translateX(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const symbols = 'ATIR+-*/%';
+            const body = document.body;
+
+            function createFloatingElement() {
+                const element = document.createElement('div');
+                element.classList.add('floating');
+                element.innerText = symbols.charAt(Math.floor(Math.random() * symbols.length));
+                element.style.left = `${Math.random() * 100}vw`;
+                element.style.animationDuration = `${Math.random() * 5 + 3}s`;
+                body.appendChild(element);
+
+                setTimeout(() => {
+                    element.remove();
+                }, 8000);
+            }
+
+            setInterval(createFloatingElement, 200);
+        });
+    </script>
+</body>
+</html>
